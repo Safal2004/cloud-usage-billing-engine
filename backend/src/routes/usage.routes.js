@@ -30,7 +30,8 @@
 import express from "express";
 import { apiKeyAuth } from "../middleware/auth.middleware.js";
 import { createObject, deleteObject } from "../services/object.service.js";
-import { recordStorageEvent } from "../services/metering.service.js";
+import pool from "../db/index.js";
+import { recordStorageEvent, recordApiUsage } from "../services/metering.service.js";
 
 const router = express.Router();
 router.use(apiKeyAuth);
@@ -70,6 +71,32 @@ router.post("/storage/delete", async (req, res) => {
     res.json({ message: "Object deleted" });
   } catch (err) {
     res.status(400).json({ error: err.message });
+  }
+});
+
+
+router.post("/api", async (req, res) => {
+  try {
+    await recordApiUsage(req.user.id, req.body);
+    res.json({ message: "API usage recorded" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.get("/storage/list", async (req, res) => {
+  try {
+    const result = await pool.query(
+      `SELECT object_key, object_size_mb, status
+       FROM objects
+       WHERE user_id = $1 AND status = 'ACTIVE'`,
+      [req.user.id]
+    );
+
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
   }
 });
 

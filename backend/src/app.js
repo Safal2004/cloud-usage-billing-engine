@@ -2,18 +2,20 @@ import express from "express";
 import dotenv from "dotenv";
 import usageRoutes from "./routes/usage.routes.js";
 import billingRoutes from "./routes/billing.routes.js";
+import cors from 'cors';
 
 // const cors = require("cors");
 
-// app.use(cors({
-//   origin: "http://localhost:3000",
-//   credentials: true
-// }));
 
 
 dotenv.config();
 
 const app = express();
+app.use(cors({
+  origin: "*",
+  credentials: true
+}));
+
 app.use(express.json());
 
 app.get("/health", (req, res) => {

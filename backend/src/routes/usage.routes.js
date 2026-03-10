@@ -48,6 +48,9 @@ router.post("/storage/upload", async (req, res) => {
       operation_type: "PUT",
     });
 
+    await recordApiUsage(req.user.id, { operation_type: "PUT" });
+
+
     res.status(201).json({ message: "Object uploaded", object });
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -67,6 +70,7 @@ router.post("/storage/delete", async (req, res) => {
       object_size_mb: object.object_size_mb,
       operation_type: "DELETE",
     });
+    await recordApiUsage(req.user.id, { operation_type: "DELETE" });
 
     res.json({ message: "Object deleted" });
   } catch (err) {
@@ -99,5 +103,34 @@ router.get("/storage/list", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+
+
+router.post("/storage/get", async (req, res) => {
+  try {
+    const { object_key } = req.body;
+
+    // check object exists
+    const result = await pool.query(
+      `SELECT * FROM objects 
+       WHERE user_id = $1 AND object_key = $2 AND status='ACTIVE'`,
+      [req.user.id, object_key]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "Object not found" });
+    }
+
+    // record API usage
+    await recordApiUsage(req.user.id, { operation_type: "GET" });
+
+    res.json({ message: "Object retrieved (simulated)" });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 
 export default router;

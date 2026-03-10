@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import usageRoutes from "./routes/usage.routes.js";
 import billingRoutes from "./routes/billing.routes.js";
 import cors from 'cors';
-
+import userRoutes from "./routes/user.routes.js";
 // const cors = require("cors");
 
 
@@ -17,6 +17,8 @@ app.use(cors({
 }));
 
 app.use(express.json());
+
+app.use("/users", userRoutes);
 
 app.get("/health", (req, res) => {
   res.json({ status: "Service running" });

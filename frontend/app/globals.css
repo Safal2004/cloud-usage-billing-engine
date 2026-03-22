@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 font-sans tracking-tight;
+  }
+  
+  h3 {
+    @apply text-2xl font-bold text-gray-800 mb-6 pb-4 border-b-2 border-slate-100;
+  }
+
+  button {
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-6 rounded-xl transition-all duration-200 active:scale-95 shadow-sm;
+  }
+
+  input[type="text"], input[type="file"], input[type="date"], input[type="password"] {
+    @apply w-full px-4 py-3 mb-5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-shadow bg-slate-50/50 hover:bg-slate-50;
+  }
+
+  li {
+    @apply bg-white p-4 border border-slate-100 mb-3 rounded-2xl flex justify-between items-center shadow-sm hover:shadow-md transition-shadow;
+  }
+  
+  li button {
+    @apply ml-3 text-sm px-4 py-2 opacity-90 hover:opacity-100;
+  }
+}

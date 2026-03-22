@@ -4,6 +4,7 @@ import usageRoutes from "./routes/usage.routes.js";
 import billingRoutes from "./routes/billing.routes.js";
 import cors from 'cors';
 import userRoutes from "./routes/user.routes.js";
+import authRoutes from "./routes/auth.routes.js";
 // const cors = require("cors");
 
 
@@ -17,6 +18,7 @@ app.use(cors({
 }));
 
 app.use(express.json());
+app.use("/auth", authRoutes);
 
 app.use("/users", userRoutes);
 
@@ -27,10 +29,10 @@ app.get("/health", (req, res) => {
 app.use("/usage", usageRoutes);
 
 const PORT = process.env.PORT || 4000;
+app.use("/billing", billingRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
 //day6
-app.use("/billing", billingRoutes);

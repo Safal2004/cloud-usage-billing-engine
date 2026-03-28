@@ -5,6 +5,7 @@ import billingRoutes from "./routes/billing.routes.js";
 import cors from 'cors';
 import userRoutes from "./routes/user.routes.js";
 import authRoutes from "./routes/auth.routes.js";
+import bucketRoutes from "./routes/bucket.routes.js";
 // const cors = require("cors");
 
 
@@ -27,6 +28,7 @@ app.get("/health", (req, res) => {
 });
 
 app.use("/usage", usageRoutes);
+app.use("/buckets", bucketRoutes);
 
 const PORT = process.env.PORT || 4000;
 app.use("/billing", billingRoutes);

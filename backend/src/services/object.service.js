@@ -16,18 +16,19 @@ export async function createObject(userId, data) {
   return result.rows[0];
 }
 
-export async function deleteObject(userId, objectKey) {
+export async function deleteObject(userId, bucketId, objectKey) {
   const result = await pool.query(
     `
     UPDATE objects
     SET status = 'DELETED',
         deleted_at = NOW()
     WHERE user_id = $1
-      AND object_key = $2
+      AND bucket_id = $2
+      AND object_key = $3
       AND status = 'ACTIVE'
     RETURNING *
     `,
-    [userId, objectKey]
+    [userId, bucketId, objectKey]
   );
 
   if (result.rows.length === 0) {

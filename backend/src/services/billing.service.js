@@ -127,18 +127,16 @@ export async function generateMonthlyInvoice(user_id, startDate, endDate) {
     const durationMs = effectiveEnd - effectiveStart;
 
     if (durationMs > 0) {
-
       const durationHours = durationMs / (1000 * 60 * 60);
-
       const billableDays = Math.ceil(durationHours / 24);
+      const sizeMB = parseFloat(obj.object_size_mb || 0);
 
-      const sizeGB = obj.object_size_mb / 1024;
-
-      storageCost += sizeGB * billableDays * STORAGE_RATE;
+      // Calculation: MB * days * rate
+      storageCost += sizeMB * billableDays * STORAGE_RATE;
     }
   }
 
-  const totalCost = apiCost + storageCost;
+  const totalCost = Number(apiCost) + Number(storageCost);
 
 
   /* ---------------- INSERT INVOICE ---------------- */

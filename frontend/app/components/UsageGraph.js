@@ -12,17 +12,23 @@ export default function UsageGraph() {
     async function fetchData() {
       try {
         const usageData = await apiRequest("/usage/api-usage", "GET");
-        // format dates cleanly
-        const formatted = usageData.map(item => {
+        // Group by cleaner date string to avoid duplicate labels
+        const aggregated = (usageData || []).reduce((acc, item) => {
             const d = new Date(item.date);
-            return {
-                date: `${d.getMonth() + 1}/${d.getDate()}`,
-                PUT: parseInt(item.put_count, 10),
-                GET: parseInt(item.get_count, 10),
-                DELETE: parseInt(item.delete_count, 10)
-            };
-        });
-        setData(formatted);
+            const dateStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            
+            if (!acc[dateStr]) {
+                acc[dateStr] = { date: dateStr, PUT: 0, GET: 0, DELETE: 0 };
+            }
+            
+            acc[dateStr].PUT += parseInt(item.put_count || 0, 10);
+            acc[dateStr].GET += parseInt(item.get_count || 0, 10);
+            acc[dateStr].DELETE += parseInt(item.delete_count || 0, 10);
+            
+            return acc;
+        }, {});
+
+        setData(Object.values(aggregated));
       } catch (e) {
         console.error("Failed to load graph data", e);
       }

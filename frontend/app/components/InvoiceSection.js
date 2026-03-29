@@ -37,7 +37,7 @@ export default function InvoiceSection() {
       const data = await apiRequest("/billing/generate", "POST", { startDate, endDate });
       setInvoice(data);
     } catch (e) {
-      alert("Failed to fetch bill.");
+      alert(`Billing Error: ${e.message}`);
     }
     setLoading(false);
   };

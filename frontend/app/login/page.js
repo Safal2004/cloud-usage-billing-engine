@@ -10,7 +10,7 @@ export default function Login() {
     const router = useRouter();
 
     const login = async () => {
-        const res = await fetch("http://localhost:4000/auth/login", {
+        const res = await fetch("https://cloud-usage-billing-engine.onrender.com/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -36,7 +36,7 @@ export default function Login() {
                     <div className="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-white opacity-10 rounded-full blur-3xl"></div>
                     <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-blue-400 opacity-20 rounded-full blur-3xl"></div>
                     <div className="relative z-10">
-                        <h1 className="text-4xl font-extrabold mb-6 tracking-tight">Cloud Storage <br/>Engine</h1>
+                        <h1 className="text-4xl font-extrabold mb-6 tracking-tight">Cloud Storage <br />Engine</h1>
                         <p className="text-blue-100 text-lg mb-8 leading-relaxed">
                             Access your highly scalable, reliable, and secure object storage environment—built for the modern web.
                         </p>
@@ -51,24 +51,24 @@ export default function Login() {
                     <div className="space-y-6">
                         <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
-                            <input 
-                                className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all text-gray-900 font-medium" 
-                                placeholder="developer@example.com" 
-                                onChange={(e) => setEmail(e.target.value)} 
+                            <input
+                                className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all text-gray-900 font-medium"
+                                placeholder="developer@example.com"
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
                         <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
-                            <input 
-                                className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all text-gray-900 font-medium" 
-                                placeholder="••••••••" 
-                                type="password" 
-                                onChange={(e) => setPassword(e.target.value)} 
+                            <input
+                                className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all text-gray-900 font-medium"
+                                placeholder="••••••••"
+                                type="password"
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
 
-                        <button 
-                            className="w-full py-4 px-6 mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg shadow-blue-500/30 transition-all duration-300 transform active:scale-[0.98]" 
+                        <button
+                            className="w-full py-4 px-6 mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg shadow-blue-500/30 transition-all duration-300 transform active:scale-[0.98]"
                             onClick={login}
                         >
                             Access Console

@@ -5,7 +5,7 @@ export async function apiRequest(path, method = "GET", body) {
     throw new Error("API key not set");
   }
 
-  const res = await fetch(`http://localhost:4000${path}`, {
+  const res = await fetch(`http://backend:4000${path}`, {
     method,
     headers: {
       "Content-Type": "application/json",

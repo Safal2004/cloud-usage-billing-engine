@@ -10,7 +10,7 @@ export default function Register() {
     const router = useRouter();
 
     const register = async () => {
-        const res = await fetch("http://localhost:4000/auth/register", {
+        const res = await fetch("http://backend:4000/auth/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -46,24 +46,24 @@ export default function Register() {
                     <div className="space-y-6">
                         <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
-                            <input 
-                                className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-gray-900 font-medium" 
-                                placeholder="developer@example.com" 
-                                onChange={(e) => setEmail(e.target.value)} 
+                            <input
+                                className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-gray-900 font-medium"
+                                placeholder="developer@example.com"
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
                         <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
-                            <input 
-                                className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-gray-900 font-medium" 
-                                placeholder="••••••••" 
-                                type="password" 
-                                onChange={(e) => setPassword(e.target.value)} 
+                            <input
+                                className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-gray-900 font-medium"
+                                placeholder="••••••••"
+                                type="password"
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
 
-                        <button 
-                            className="w-full py-4 px-6 mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/30 transition-all duration-300 transform active:scale-[0.98]" 
+                        <button
+                            className="w-full py-4 px-6 mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/30 transition-all duration-300 transform active:scale-[0.98]"
                             onClick={register}
                         >
                             Sign Up

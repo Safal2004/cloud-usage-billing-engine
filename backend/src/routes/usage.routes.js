@@ -1,32 +1,3 @@
-// import express from "express";
-// import { recordStorageEvent,recordApiUsage, } from "../services/metering.service.js";
-// import { apiKeyAuth } from "../middleware/auth.middleware.js";
-
-// const router = express.Router();
-// router.use(apiKeyAuth); //everythings below this rquries api key
-
-
-// router.post("/storage", async (req, res) => {
-//   try {
-//     await recordStorageEvent(req.user.id, req.body); //user id ko req.user.id se liya
-//     res.status(201).json({ message: "Storage event recorded" });
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// });
-
-// router.post("/api", async (req, res) => {
-//   try {
-//     await recordApiUsage(req.user.id, req.body);
-//     res.status(201).json({ message: "API usage recorded" });
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// });
-
-
-// export default router;
-
 import express from "express";
 import { apiKeyAuth } from "../middleware/auth.middleware.js";
 import { createObject, deleteObject } from "../services/object.service.js";

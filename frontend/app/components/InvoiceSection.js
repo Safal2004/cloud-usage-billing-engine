@@ -82,15 +82,15 @@ export default function InvoiceSection() {
         <div className="mt-6 pt-6 border-t border-gray-100 grid grid-cols-2 gap-4">
           <div className="bg-blue-50 rounded-xl p-4 border border-blue-100">
             <p className="text-sm text-blue-600 font-bold uppercase tracking-wider mb-1">Storage Cost</p>
-            <p className="text-2xl font-black text-gray-900">₹{invoice.storageCost}</p>
+            <p className="text-2xl font-black text-gray-900">₹{Number(invoice.storageCost).toFixed(2)}</p>
           </div>
           <div className="bg-purple-50 rounded-xl p-4 border border-purple-100">
             <p className="text-sm text-purple-600 font-bold uppercase tracking-wider mb-1">API Cost</p>
-            <p className="text-2xl font-black text-gray-900">₹{invoice.apiCost}</p>
+            <p className="text-2xl font-black text-gray-900">₹{Number(invoice.apiCost).toFixed(2)}</p>
           </div>
-          <div className="col-span-2 bg-gradient-to-r from-indigo-500 to-blue-600 rounded-xl p-5 text-white shadow-lg shadow-indigo-500/30">
-            <p className="text-base text-indigo-100 font-semibold uppercase tracking-widest mb-1">Total Bill</p>
-            <p className="text-4xl font-extrabold">₹{invoice.totalCost}</p>
+          <div className="col-span-2 bg-indigo-50 rounded-xl p-5 border border-indigo-100 shadow-sm">
+            <p className="text-base text-indigo-600 font-semibold uppercase tracking-widest mb-1">Total Bill</p>
+            <p className="text-4xl font-extrabold text-gray-900">₹{Number(invoice.totalCost).toFixed(2)}</p>
           </div>
         </div>
       )}

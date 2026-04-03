@@ -10,7 +10,7 @@ export default function Register() {
     const router = useRouter();
 
     const register = async () => {
-        const res = await fetch("https://cloud-usage-billing-engine.onrender.com/auth/register", {
+        const res = await fetch("http://35.154.150.20:4000/auth/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

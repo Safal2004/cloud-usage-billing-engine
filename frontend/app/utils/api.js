@@ -5,7 +5,7 @@ export async function apiRequest(path, method = "GET", body) {
     throw new Error("API key not set");
   }
 
-  const res = await fetch(`https://cloud-usage-billing-engine.onrender.com${path}`, {
+  const res = await fetch(`http://35.154.150.20:4000${path}`, {
     method,
     headers: {
       "Content-Type": "application/json",

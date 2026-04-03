@@ -10,7 +10,7 @@ export default function Login() {
     const router = useRouter();
 
     const login = async () => {
-        const res = await fetch("https://cloud-usage-billing-engine.onrender.com/auth/login", {
+        const res = await fetch("http://35.154.150.20:4000/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

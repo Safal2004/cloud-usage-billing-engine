@@ -10,7 +10,7 @@ export default function Register() {
     const router = useRouter();
 
     const register = async () => {
-        const res = await fetch("http://35.154.150.20:4000/auth/register", {
+        const res = await fetch("https://api.safaldev.me/auth/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

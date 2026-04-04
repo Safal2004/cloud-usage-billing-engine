@@ -1,0 +1,34 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: SSH into EC2 and deploy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            cd cloud-usage-billing-engine
+            git pull origin main
+            cd backend
+            docker stop billing-container || true
+            docker rm billing-container || true
+            docker build -t billing-backend .
+            docker run -d \
+              --name billing-container \
+              --restart always \
+              -p 4000:4000 \
+              --env-file .env.production \
+              billing-backend

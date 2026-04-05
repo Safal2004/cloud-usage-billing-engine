@@ -10,6 +10,12 @@ export default function Login() {
     const router = useRouter();
 
     const login = async () => {
+        if (!email || !password) {
+            return alert("All fields required");
+        }
+        // if(!email.includes("@")){
+        //     return alert("Invalid email");
+        // }
         const res = await fetch("https://api.safaldev.me/auth/login", {
             method: "POST",
             headers: {

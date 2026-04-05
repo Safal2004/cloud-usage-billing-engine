@@ -4,9 +4,9 @@ import pool from "../db/index.js";
 // const PUT_RATE = 0.01 / 100;
 // const GET_RATE = 0.01 / 1000;
 
-const STORAGE_RATE = 0.1;      // ₹1 per MB per day
+const STORAGE_RATE = 0.1;      // ₹0.1 per MB per day
 const PUT_RATE = 1;          // ₹1 per PUT
-const GET_RATE = 1;        // ₹0.5 per GET
+const GET_RATE = 1;        // ₹1 per GET
 
 
 export async function generateMonthlyInvoice(user_id, startDate, endDate) {

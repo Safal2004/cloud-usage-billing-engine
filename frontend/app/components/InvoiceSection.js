@@ -1,25 +1,3 @@
-// "use client";
-// import { apiRequest } from "../utils/api";
-
-// export default function InvoiceSection() {
-//   const generateInvoice = async () => {
-//     const data = await apiRequest("/billing/generate", "POST", {
-//       startDate: "2026-02-01",
-//       endDate: "2026-02-28",
-//     });
-
-//     alert(`Total Bill: ₹${data.totalCost}`);
-//   };
-
-//   return (
-//     <div>
-//       <h3>Invoice</h3>
-//       <button onClick={generateInvoice}>View Invoice</button>
-//     </div>
-//   );
-// }
-
-
 "use client";
 
 import { useState } from "react";
@@ -70,8 +48,8 @@ export default function InvoiceSection() {
         </div>
       </div>
 
-      <button 
-        onClick={generateInvoice} 
+      <button
+        onClick={generateInvoice}
         className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all shadow-sm active:scale-[0.98]"
         disabled={loading}
       >

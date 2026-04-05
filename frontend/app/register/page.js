@@ -10,6 +10,15 @@ export default function Register() {
     const router = useRouter();
 
     const register = async () => {
+
+        if (!email || !password) {
+            return alert("All fields required");
+        }
+
+        if (!email.includes("@")) {
+            return alert("Invalid email");
+        }
+
         const res = await fetch("https://api.safaldev.me/auth/register", {
             method: "POST",
             headers: {
@@ -48,7 +57,7 @@ export default function Register() {
                             <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
                             <input
                                 className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-gray-900 font-medium"
-                                placeholder="developer@example.com"
+                                placeholder="developer@gmail.com"
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
